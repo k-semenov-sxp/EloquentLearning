@@ -26,6 +26,7 @@ Route::name('student.')->group( function () {
     Route::post('/student/store', [StudentController::class, 'store'])->name('store');
     Route::get('/student/show', [StudentController::class, 'show'])->name('show');
     Route::put('/student/update', [StudentController::class, 'update'])->name('update');
+    Route::patch('/student/customUpdate', [StudentController::class, 'customUpdate'])->name('customUpdate');
     Route::delete('/student/delete', [StudentController::class, 'delete'])->name('delete');
     Route::post('/student/assign', [StudentController::class, 'assignStudent'])->name('assign');
     Route::delete('/student/unsign', [StudentController::class, 'unsignStudent'])->name('unsign');

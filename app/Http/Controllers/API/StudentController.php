@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AssignStudentRequest;
+use App\Http\Requests\StudentCustomUpdateRequest;
 use App\Http\Requests\StudentDeleteRequest;
 use App\Http\Requests\StudentShowRequest;
 use App\Http\Requests\StudentStoreRequest;
@@ -108,6 +109,28 @@ class StudentController extends Controller
     public function update(StudentService $studentService, StudentUpdateRequest $request)
     {
         return $studentService->updateStudent($request);
+    }
+    #[Put(
+        path: '/api/student/customUpdate',
+        operationId: 'updateStudent',
+        summary: 'Update student',
+        tags: ['Student'],
+        requestBody: new RequestBody(required: true, content: new JsonContent(example: [
+            'id' => 1,
+            'first_name' => 'name_test',
+            'last_name' => 'last_test',
+            'gender' => 'M',
+            'date_of_birth' => '2003-05-06',
+        ])),
+        responses: [
+            new Response(response: 200, description: 'Everything is fine'),
+            new Response(response: 404, description: 'Page not found'),
+            new Response(response: 500, description: 'Internal Server Error')
+        ],
+    )]
+    public function customUpdate(StudentService $studentService, StudentCustomUpdateRequest $request)
+    {
+        return $studentService->customUpdateStudent($request);
     }
 
     #[Delete(

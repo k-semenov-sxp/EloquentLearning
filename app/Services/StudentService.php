@@ -39,6 +39,15 @@ class StudentService
         return new StudentResource($student);
     }
 
+    public function customUpdateStudent($request)
+    {
+        $student = Student::query()->findOrFail($request->id);
+
+        $student->update($request->all());
+
+        return new StudentResource($student);
+    }
+
     public function deleteStudent($id)
     {
         Student::destroy($id);
